@@ -15,17 +15,27 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for Bulk user action demo
+ * External functions and service declaration for Bulk user action demo
+ *
+ * Documentation: {@link https://moodledev.io/docs/apis/subsystems/external/description}
  *
  * @package    tool_bulkactiondemo
+ * @category   webservice
  * @copyright  2024 Marina Glancy
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component    = 'tool_bulkactiondemo';
-$plugin->release      = '1.1';
-$plugin->version      = 2024011801;
-$plugin->requires     = 2024011200.00;
-$plugin->maturity     = MATURITY_STABLE;
+$functions = [
+
+    'tool_bulkactiondemo_action' => [
+        'classname' => tool_bulkactiondemo\external\action::class,
+        'description' => 'Perform bulk user action',
+        'type' => 'write',
+        'ajax' => true,
+    ],
+];
+
+$services = [
+];

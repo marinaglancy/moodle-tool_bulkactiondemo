@@ -33,6 +33,7 @@ class bulk_user_actions {
      * @param \core\hook\user\bulk_user_actions $hook
      */
     public static function callback(\core\hook\user\bulk_user_actions $hook): void {
+        global $PAGE;
 
         $syscontext = \context_system::instance();
         if (has_capability('moodle/user:update', $syscontext)) {
@@ -42,6 +43,7 @@ class bulk_user_actions {
             $hook->add_action('tool_bulkactiondemo_unsuspend', new action_link(
                 new moodle_url('/admin/tool/bulkactiondemo/action.php', ['action' => 'unsuspend']),
                 get_string('unsuspend', 'tool_bulkactiondemo')));
+            $PAGE->requires->js_call_amd('tool_bulkactiondemo/actions', 'init');
         }
     }
 }
