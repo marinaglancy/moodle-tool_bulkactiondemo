@@ -27,6 +27,8 @@ import Ajax from 'core/ajax';
 import * as reportEvents from 'core_reportbuilder/local/events';
 import {dispatchEvent} from 'core/event_dispatcher';
 import * as reportSelectors from 'core_reportbuilder/local/selectors';
+import {add as addToast} from 'core/toast';
+import * as FormChangeChecker from 'core_form/changechecker';
 
 const SELECTORS = {
     bulkActionForm: 'body#page-admin-user form#user-bulk-action-form',
@@ -49,6 +51,7 @@ export const init = () => {
         }
 
         e.preventDefault();
+        FormChangeChecker.markFormSubmitted(e.target);
 
         action = action.replace('tool_bulkactiondemo_', '');
         const userlist = e.target.data.usernames.join(', ');
@@ -96,7 +99,7 @@ function performAction(action, userids, successMessage) {
             userids: userids,
         },
         done: () => {
-            Notification.addNotification({message: successMessage, type: "success"});
+            addToast(successMessage, {});
             if (reportElement) {
                 dispatchEvent(reportEvents.tableReload, {preservePagination: true}, reportElement);
             }

@@ -34,15 +34,18 @@ class bulk_user_actions {
      */
     public static function callback(\core\hook\user\bulk_user_actions $hook): void {
         global $PAGE;
+        $category = 'Added by plugin';
 
         $syscontext = \context_system::instance();
         if (has_capability('moodle/user:update', $syscontext)) {
             $hook->add_action('tool_bulkactiondemo_suspend', new action_link(
                 new moodle_url('/admin/tool/bulkactiondemo/action.php', ['action' => 'suspend']),
-                get_string('suspend', 'tool_bulkactiondemo')));
+                get_string('suspend', 'tool_bulkactiondemo')),
+                $category);
             $hook->add_action('tool_bulkactiondemo_unsuspend', new action_link(
                 new moodle_url('/admin/tool/bulkactiondemo/action.php', ['action' => 'unsuspend']),
-                get_string('unsuspend', 'tool_bulkactiondemo')));
+                get_string('unsuspend', 'tool_bulkactiondemo')),
+                $category);
             $PAGE->requires->js_call_amd('tool_bulkactiondemo/actions', 'init');
         }
     }
