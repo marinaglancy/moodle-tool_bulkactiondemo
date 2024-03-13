@@ -14,7 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace tool_bulkactiondemo\local\hooks\user;
+namespace tool_bulkactiondemo\local\hooks;
+
 use action_link;
 use moodle_url;
 
@@ -25,14 +26,14 @@ use moodle_url;
  * @copyright  2024 Marina Glancy
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class bulk_user_actions {
+class extend_bulk_user_actions {
 
     /**
      * Extend bulk user actions menu
      *
-     * @param \core\hook\user\bulk_user_actions $hook
+     * @param \core_user\hook\extend_bulk_user_actions $hook
      */
-    public static function callback(\core\hook\user\bulk_user_actions $hook): void {
+    public static function callback(\core_user\hook\extend_bulk_user_actions $hook): void {
         global $PAGE;
         $category = 'Added by plugin';
 

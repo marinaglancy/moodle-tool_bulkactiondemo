@@ -26,8 +26,8 @@ defined('MOODLE_INTERNAL') || die();
 
 $callbacks = [
     [
-        'hook' => core\hook\user\bulk_user_actions::class,
-        'callback' => 'tool_bulkactiondemo\local\hooks\user\bulk_user_actions::callback',
+        'hook' => core_user\hook\extend_bulk_user_actions::class,
+        'callback' => 'tool_bulkactiondemo\local\hooks\extend_bulk_user_actions::callback',
         'priority' => 0,
     ],
 ];
